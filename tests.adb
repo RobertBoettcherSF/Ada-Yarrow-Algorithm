@@ -35,7 +35,7 @@ begin
    -- TEST 2: Entropy Input (Fast Pool Priority)
    declare
       Ctx : Context;
-      Env_Data : Byte_Array (1 .. 4) := (1, 2, 3, 4);
+      Env_Data : constant Byte_Array (1 .. 4) := [1, 2, 3, 4];
    begin
       Put_Line ("TEST 2 — Entropy Input (Fast Pool Distribution)");
       Initialize (Ctx);
@@ -48,7 +48,7 @@ begin
    -- TEST 3: Entropy Input (Slow Pool Alternation)
    declare
       Ctx : Context;
-      Env_Data : Byte_Array (1 .. 4) := (1, 2, 3, 4);
+      Env_Data : constant Byte_Array (1 .. 4) := [1, 2, 3, 4];
    begin
       Put_Line ("TEST 3 — Entropy Input (Slow Pool Alternation)");
       Initialize (Ctx);
@@ -62,7 +62,7 @@ begin
    -- TEST 4: Trigger Fast Reseed variant
    declare
       Ctx : Context;
-      Env_Data : Byte_Array (1 .. 16) := (others => 55);
+      Env_Data : constant Byte_Array (1 .. 16) := [others => 55];
    begin
       Put_Line ("TEST 4 — Fast Reseed Condition Trigger");
       Initialize (Ctx);
@@ -77,7 +77,7 @@ begin
    -- TEST 5: Trigger Slow Reseed variant
    declare
       Ctx : Context;
-      Env_Data : Byte_Array (1 .. 16) := (others => 99);
+      Env_Data : constant Byte_Array (1 .. 16) := [others => 99];
    begin
       Put_Line ("TEST 5 — Slow Reseed Condition Trigger");
       Initialize (Ctx);
@@ -183,7 +183,7 @@ begin
    -- TEST 12: Manual Reseed Procedure (Fast)
    declare
       Ctx : Context;
-      Data : Byte_Array (1 .. 4) := (1, 1, 1, 1);
+      Data : constant Byte_Array (1 .. 4) := [1, 1, 1, 1];
    begin
       Put_Line ("TEST 12 — Manual Intervention: Fast Reseed");
       Initialize (Ctx);
@@ -198,7 +198,7 @@ begin
    -- TEST 13: Manual Reseed Procedure (Slow)
    declare
       Ctx : Context;
-      Data : Byte_Array (1 .. 4) := (2, 2, 2, 2);
+      Data : constant Byte_Array (1 .. 4) := [2, 2, 2, 2];
    begin
       Put_Line ("TEST 13 — Manual Intervention: Slow Reseed");
       Initialize (Ctx);

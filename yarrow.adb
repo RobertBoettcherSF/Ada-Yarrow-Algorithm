@@ -14,7 +14,7 @@ package body Yarrow is
    -- proper state manipulation without enormous dependencies.
    
    function Hash_Function (Data : Byte_Array) return Block_Type is
-      Result : Block_Type := (others => 16#5A#);
+      Result : Block_Type := [others => 16#5A#];
       Idx    : Positive;
    begin
       -- Ingestion pass
@@ -83,8 +83,8 @@ package body Yarrow is
       
       -- New key derived from fast pool and old key
       Ctx.Key := Hash_Function (Ctx.Fast_Pool & Ctx.Key);
-      Ctx.Counter := (others => 0);
-      Ctx.Fast_Entropy := (others => 0);
+      Ctx.Counter := [others => 0];
+      Ctx.Fast_Entropy := [others => 0];
       
       -- Mix pool into itself to prepare for next accumulation phase
       Ctx.Fast_Pool := Hash_Function (Ctx.Fast_Pool);
@@ -101,11 +101,11 @@ package body Yarrow is
       
       -- Highly conservative reset utilizing both pools
       Ctx.Key := Hash_Function (Ctx.Slow_Pool & Ctx.Fast_Pool & Ctx.Key);
-      Ctx.Counter := (others => 0);
+      Ctx.Counter := [others => 0];
       
       -- Both pools lose their entropy metric since they have been consumed
-      Ctx.Slow_Entropy := (others => 0);
-      Ctx.Fast_Entropy := (others => 0);
+      Ctx.Slow_Entropy := [others => 0];
+      Ctx.Fast_Entropy := [others => 0];
       
       Ctx.Fast_Pool := Hash_Function (Ctx.Fast_Pool);
       Ctx.Slow_Pool := Hash_Function (Ctx.Slow_Pool);
@@ -184,7 +184,7 @@ package body Yarrow is
             -- Gatekeeper Reseed Control
             if Ctx.Generator_Count >= Pg_Max then
                Ctx.Key := Hash_Function (Ctx.Key & Ctx.Counter);
-               Ctx.Counter := (others => 0);
+               Ctx.Counter := [others => 0];
                Ctx.Generator_Count := 0;
             end if;
 

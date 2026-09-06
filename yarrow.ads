@@ -64,25 +64,25 @@ private
       Initialized      : Boolean := False;
       
       -- Generation Mechanism State
-      Key              : Block_Type := (others => 0);
-      Counter          : Block_Type := (others => 0);
+      Key              : Block_Type := [others => 0];
+      Counter          : Block_Type := [others => 0];
 
       -- Entropy Accumulator Pools
-      Fast_Pool        : Block_Type := (others => 16#AA#);
-      Slow_Pool        : Block_Type := (others => 16#55#);
+      Fast_Pool        : Block_Type := [others => 16#AA#];
+      Slow_Pool        : Block_Type := [others => 16#55#];
 
       -- Entropy Estimates Tracking
-      Fast_Entropy     : Entropy_Count_Array := (others => 0);
-      Slow_Entropy     : Entropy_Count_Array := (others => 0);
+      Fast_Entropy     : Entropy_Count_Array := [others => 0];
+      Slow_Entropy     : Entropy_Count_Array := [others => 0];
       
       -- Alternator state for entropy distribution
-      Pool_Selector    : Flip_Flop_Array := (others => True);
+      Pool_Selector    : Flip_Flop_Array := [others => True];
 
       -- Reseed Control / Gatekeeper
       Generator_Count  : Natural := 0;
 
       -- Output Buffering
-      Block_Buffer     : Block_Type := (others => 0);
+      Block_Buffer     : Block_Type := [others => 0];
       Buffer_Index     : Natural := 0; -- 0 indicates buffer is currently empty
    end record;
 
